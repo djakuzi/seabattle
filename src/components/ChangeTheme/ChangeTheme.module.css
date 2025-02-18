@@ -1,0 +1,26 @@
+.title {
+    width: fit-content;
+    font-size: 22px;
+    color: var(--color-title-page);
+}
+
+.title-txt {
+    text-align: center;
+    text-shadow: 2px 1px 5px var(--color-title-page-shadow);
+    font-family: 'opsilon', sans-serif;
+}
+
+.--big {
+    font-size: 2em;
+    letter-spacing: 0.2em;
+}
+
+.--middle {
+    font-size: 1em;
+    letter-spacing: 0.15em;
+}
+
+.--small {
+    font-size: .5em;
+    letter-spacing: 0.1em;
+}

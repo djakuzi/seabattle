@@ -1,7 +1,9 @@
 @media (prefers-color-scheme: light) {
     #root {
-        --color-text: ;
+        --color-text: #ffffff;
         --color-text-shadow: #000000;
+        --color-block-shadow: #000000;
+        --color-block-bg: #980c0c;
         --color-logo: #ffffff;
         --color-logo-shadow: #000000;
         --color-title-page: #ffffff;

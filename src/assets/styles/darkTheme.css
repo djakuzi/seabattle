@@ -1,7 +1,9 @@
 @media (prefers-color-scheme: dark) {
     #root {
-        --color-text: ;
+        --color-text: #000000;
         --color-text-shadow: #ffffff;
+        --color-block-shadow: #ffffff;
+        --color-block-bg: #ffffff;
         --color-logo: #000000;
         --color-logo-shadow: #ffffff;
         --color-title-page: #000000;
