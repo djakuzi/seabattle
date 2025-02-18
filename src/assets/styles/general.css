@@ -1,0 +1,58 @@
+@font-face {
+    font-family: 'opsilon';
+    src: url('../fonts/Opsilon-Regular.woff'),
+    url('../fonts/Opsilon-Regular.woff2'),
+    url('../fonts/ofont.ru_Opsilon.ttf');
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'AlbionicTitulInfl';
+  src: url('../fonts/a_AlbionicTitulInfl-Bold.woff') format(woff),
+  url('../fonts/a_AlbionicTitulInfl-Bold.woff2') format(woff2);
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'a_CampusPrspDnSh';
+  src: url('../fonts/ACampusPrspDnSh.woff') format(woff),
+  url('../fonts/ACampusPrspDnSh.woff2') format(woff2);
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'RedOctober-Fat';
+  src: url('../fonts/RedOctober-Fat.woff') format(woff),
+  url('../fonts/RedOctober-Fat.woff2') format(woff2);
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light dark;
+}
+
+html {
+    font-size: 16px;
+    font-family: 'opsilon', sans-serif;
+    line-height: 1;
+}
+
+body, #root {
+  max-width: 100dvw;
+  max-height: 100dvh;
+  width: 100dvw;
+  height: 100dvh;
+  padding: 0;
+  overflow: hidden;
+}
+
+
+

@@ -1,0 +1,10 @@
+@media (prefers-color-scheme: dark) {
+    #root {
+        --color-text: ;
+        --color-text-shadow: #ffffff;
+        --color-logo: #000000;
+        --color-logo-shadow: #ffffff;
+        --color-title-page: #000000;
+        --color-title-page-shadow: #ffffff;
+    }
+}
