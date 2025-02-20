@@ -1,12 +1,12 @@
-@media (prefers-color-scheme: dark) {
-    #root {
-        --color-text: #000000;
-        --color-text-shadow: #ffffff;
-        --color-block-shadow: #ffffff;
-        --color-block-bg: #ffffff;
-        --color-logo: #000000;
-        --color-logo-shadow: #ffffff;
-        --color-title-page: #000000;
-        --color-title-page-shadow: #ffffff;
-    }
+html[data-theme="dark"] {
+    --color-text: #000000;
+    --color-text-shadow: #ffffff;
+    --color-block-shadow: #ffffff;
+    --color-block-bg: #980c0c;
+    --color-logo: #000000;
+    --color-logo-shadow: #ffffff;
+    --color-logo-author: #d81515;
+    --color-logo-author-shadow: #000000;
+    --color-title-page: #000000;
+    --color-title-page-shadow: #ffffff;
 }

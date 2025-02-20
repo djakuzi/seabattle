@@ -1,15 +1,17 @@
 import { JSX } from "react";
-import styles from './TitlePage.module.css';
+import styles from './ChangeTheme.module.css';
 import { PropsChangeTheme } from "./ChangeTheme.props";
+import changeTheme from "../../scripts/visual/changeTheme";
 
-export default function ChangeTheme({ children, className, size = 'big' }: PropsChangeTheme):JSX.Element {
+export default function ChangeTheme({className}: PropsChangeTheme):JSX.Element {
 
-    const classNameTitle = styles['title'] + ' ' + className;
+    const classNameTheme = styles['switch'] + ' ' + className;
 
     return (
-        <div className={classNameTitle}>
-            <div className={styles['title-txt'] + ' ' + styles['--' + size]}>
-                {children}
+        <div className={classNameTheme} onClick={() => changeTheme('toggle')}>
+            <div className={styles['switch__toggle']}>
+                <img src="" alt="" />
+                <img src="" alt="" />
             </div>
         </div>
     );

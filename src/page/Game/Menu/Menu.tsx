@@ -2,14 +2,20 @@ import { JSX } from "react";
 import styles from './menu.module.css';
 import Logo from "../../../components/Logo/Logo";
 import TitlePage from "../../../components/TitlePage/TitlePage";
+import ChangeTheme from "../../../components/ChangeTheme/ChangeTheme";
 
 export default function Menu(): JSX.Element {
     return (
         <div className={styles['main']}>
             <div className={styles['main__wrapper']}>
                 <div className={styles['main__interaction']}>
-                    <div className={styles['main__interaction-item']}>Профиль</div>
-                    <div className={styles['main__interaction-item']}>Настройки</div>
+                    <div className={styles['main__interaction-left']}>
+                        <ChangeTheme className={styles['main__interaction-item']} />
+                    </div>
+                    <div className={styles['main__interaction-right']}>
+                        <div className={styles['main__interaction-item']}>Профиль</div>
+                        <div className={styles['main__interaction-item']}>Настройки</div>
+                    </div>
                 </div>
 
                 <Logo className={styles['logo']} size="big"></Logo>
