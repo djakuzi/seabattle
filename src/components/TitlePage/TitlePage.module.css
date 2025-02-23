@@ -1,12 +1,22 @@
+html .title {
+    --cs-color-title-page: #55C1FA;
+    --cs-color-title-page-shadow: #000000;
+}
+
+html[data-theme="dark"] .title {
+    --cs-color-title-page: #000000;
+    --cs-color-title-page-shadow: #ffffff;
+}
+
 .title {
     width: fit-content;
     font-size: 22px;
-    color: var(--color-title-page);
+    color: var(--cs-color-title-page);
 }
 
 .title-txt {
     text-align: center;
-    text-shadow: 2px 1px 5px var(--color-title-page-shadow);
+    text-shadow: 2px 1px 5px var(--cs-color-title-page-shadow);
     font-family: 'opsilon', sans-serif;
 }
 

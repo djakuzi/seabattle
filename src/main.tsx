@@ -3,10 +3,10 @@ import './assets/styles/darkTheme.css';
 import './assets/styles/whiteTheme.css';
 import './assets/styles/general.css';
 import './assets/styles/resetStyles.css';
-import {createBrowserRouter, RouterProvider} from "react-router";
+import { createBrowserRouter, RouterProvider } from "react-router";
 import { createRoot } from "react-dom/client";
 import React from "react";
-import Menu from "./page/Game/Menu/Menu";
+import Menu from "./components/ScreenMenu/ScreenMenu";
 import Game from "./layout/Game/Game";
 import Auth from "./layout/Auth/Auth";
 import Login from "./page/Auth/Login/Login";
@@ -20,10 +20,6 @@ const router = [
     path: "/",
     element: <Game></Game>,
     children: [
-      {
-        path: "menu",
-        element: <Menu></Menu>,
-      },
       {
         path: "gamebot",
         element: <Menu></Menu>,
@@ -61,7 +57,7 @@ const element = document.getElementById("root") || document.body;
 createRoot(element).render(
   <React.StrictMode>
     <Provider store={store}>
-        <RouterProvider router={ROUTER} />
+      <RouterProvider router={ROUTER} />
     </Provider>
   </React.StrictMode>
 );

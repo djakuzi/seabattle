@@ -1,16 +1,27 @@
-.logo {
-    font-size: 45px;
+html .logo {
+    --cs-color-logo: #ffffff;
+    --cs-color-logo-shadow: #000000;
+    --cs-color-logo-author: #d81515;
+    --cs-color-logo-author-shadow: #000000;
+}
+
+html[data-theme="dark"] .logo {
+    --cs-color-logo: #000000;
+    --cs-color-logo-shadow: #ffffff;
+    --cs-color-logo-author: #d81515;
+    --cs-color-logo-author-shadow: #000000;
 }
 
 .logo__title {
     font-size: 45px;
+    white-space: nowrap;
 }
 
 .logo__title-txt {
     font-family: 'a_CampusPrspDnSh';
-    color: var(--color-logo);
+    color: var(--cs-color-logo);
     text-align: center;
-    text-shadow: 2px 2px 2px var(--color-logo-shadow);
+    text-shadow: 2px 2px 2px var(--cs-color-logo-shadow);
 }
 
 .logo__author {
@@ -23,8 +34,8 @@
     font-family: 'AlbionicTitulInfl';
     font-weight: 700;
     text-align: center;
-    color: var(--color-logo-author);
-    text-shadow: 1px 2px 2px var(--color-logo-author-shadow);
+    color: var(--cs-color-logo-author);
+    text-shadow: 1px 2px 2px var(--cs-color-logo-author-shadow);
     letter-spacing: 4px;
 }
 

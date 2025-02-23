@@ -1,30 +1,17 @@
 import { JSX } from "react";
-import styles from './menu.module.css';
-import Logo from "../../../components/Logo/Logo";
-import TitlePage from "../../../components/TitlePage/TitlePage";
-import ChangeTheme from "../../../components/ChangeTheme/ChangeTheme";
+import styles from './ScreenMenu.module.css';
+import TitlePage from "../TitlePage/TitlePage";
+import { PropsScreenMenu } from "./ScreenMenu.props";
 
-export default function Menu(): JSX.Element {
+export default function ScreenMenu({inputRef}:PropsScreenMenu): JSX.Element {
     return (
-        <div className={styles['main']}>
-            <div className={styles['main__wrapper']}>
-                <div className={styles['main__interaction']}>
-                    <div className={styles['main__interaction-left']}>
-                        <ChangeTheme className={styles['main__interaction-item']} />
-                    </div>
-                    <div className={styles['main__interaction-right']}>
-                        <div className={styles['main__interaction-item']}>Профиль</div>
-                        <div className={styles['main__interaction-item']}>Настройки</div>
-                    </div>
-                </div>
+        <div ref={inputRef} className={styles['menu']}>
+            <div className={styles['menu__wrapper']}>
+                <TitlePage className={styles['title-page']}>МЕНЮ</TitlePage>
+                <div className={styles['menu__box']}>
 
-                <Logo className={styles['logo']} size="big"></Logo>
-                
-                <div className={styles['game']}>
+                    <div className={styles['game']}>
 
-                    <TitlePage className={styles['title-page']}>МЕНЮ</TitlePage>
-
-                    <div className={styles['game__wrapper']}>
                         <div className={styles['game__title']}>
                             ВЫБЕРИ ТИП ИГРЫ
                         </div>
@@ -54,10 +41,9 @@ export default function Menu(): JSX.Element {
                                 <div className={styles['game__types-item-back']}>ИГРАТЬ</div>
                             </div>
                         </div>
-
-                        <div className={styles['game__leaders']}>
-                            Таблица лидеров
-                        </div>
+                    </div>
+                    <div className={styles['game__leaders']}>
+                        Таблица лидеров
                     </div>
                 </div>
             </div>
