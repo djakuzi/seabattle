@@ -6,54 +6,50 @@ import ScreenMenu from "../ScreenMenu/ScreenMenu";
 import Profile from "../ScreenProfile/ScreenProfile";
 import Settings from "../ScreenSettings/ScreenSettings";
 import { toggleScreen } from "../../data/dataComponents";
-// import { countWidthScreens, TypeWidthScreen } from "../../scripts/visual/screenSlider";
+import { RootState } from "../../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { actionsMainSliderScreen } from "../../redux/slice/mainSliderScreen";
+
 
 export default function MainScreenSlider({ className = '' }: PropsMainScreenSlider): JSX.Element {
 
     const cls = styles['screen'] + ' ' + className;
-    // const [objWidthScreen, setobjWidthScreen] = useState<TypeWidthScreen>(null);
-    const [activeScreen, setActiveScreen] = useState<string>('menu');
+    const dispatch = useDispatch();
+    const activeScreen = useSelector((state: RootState) => state.sliderScreen.screen);
 
     const refSlider = useRef<HTMLDivElement>(null);
-    const objSlider = {
-        menu: useRef<HTMLDivElement>(null),
-        profile: useRef<HTMLDivElement>(null),
-        settings: useRef<HTMLDivElement>(null),
-    };
+
+    function setScreen(name: string):void {
+        if (!refSlider.current) return;
+
+        const index = toggleScreen.findIndex( el => el.name == name) ;
+        const width = index * refSlider.current.offsetWidth * -1;
+
+        refSlider.current.style.transform = 'translateX(' + width + 'px)';
+
+        if (name !== activeScreen) dispatch(actionsMainSliderScreen.changeScreen(name));
+    }
 
     useEffect(() => {
         if (refSlider.current) {
             refSlider.current.style.transform = 'translateX(-1650px)';
         }
-        // setobjWidthScreen(countWidthScreens(objSlider));
+
+        setScreen(activeScreen);
+        window.addEventListener('resize', () => setScreen(activeScreen));
     }, []);
-
-    function test(name: string):void {
-
-        if (name == "profile" && refSlider.current) {
-            console.log(name);
-            refSlider.current.style.transform = 'translateX(0)';
-            setActiveScreen(name);
-        }
-
-        if (name == "menu" && refSlider.current) {
-            console.log(name);
-            refSlider.current.style.transform = 'translateX(-1650px)';
-            setActiveScreen(name);
-        }
-    }
 
     return (
         <div className={cls}>
             <div ref={refSlider}className={styles["screen__slider"]}>
-                <Profile inputRef={objSlider.profile} />
-                <ScreenMenu inputRef={objSlider.menu} />
-                <Settings inputRef={objSlider.settings} />
+                <Profile/>
+                <ScreenMenu/>
+                <Settings/>
             </div>
             <div className={styles['screen__panel']}>
                 {...toggleScreen.map((el, i) => {
                     return (
-                        <div key={i} onClick={() => test(el.name)} className={cn(styles['panel__item'], {
+                        <div key={i} data-index={i} onClick={() => setScreen(el.name)} className={cn(styles['panel__item'], {
                             [styles['--active']]: activeScreen === el.name,
                         })}>
                             <img src={el.icon} alt={el.name} />

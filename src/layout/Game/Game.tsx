@@ -12,13 +12,15 @@ export default function Game(): JSX.Element {
 
     const audioRef = useRef(null);
 
-    useEffect(()=> {
-        if (audioRef) {
-            audioOnOff(audioRef.current);
+    useEffect(() => {
+        if (audioRef.current) {
+            audioOnOff(audioRef);
         }
+    }, []);
 
+    useEffect(() => {
         changeTheme('set');
-    },[]);
+    }, []);
     
     return (
         <div className={styles["game"]}>
@@ -31,7 +33,7 @@ export default function Game(): JSX.Element {
 
                 <MainScreenSlider></MainScreenSlider>
             </div>
-            <audio ref={audioOnOff} src={AUDIOmain} loop></audio>
+            <audio ref={audioOnOff} src={AUDIOmain} loop muted></audio>
         </div>
     );
 };
