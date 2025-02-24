@@ -21,7 +21,7 @@ export default function Game(): JSX.Element {
     useEffect(() => {
         changeTheme('set');
     }, []);
-    
+
     return (
         <div className={styles["game"]}>
             <div className={styles["game-window"]}>

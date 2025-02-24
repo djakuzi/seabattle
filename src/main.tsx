@@ -6,29 +6,23 @@ import './assets/styles/resetStyles.css';
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { createRoot } from "react-dom/client";
 import React from "react";
-import Menu from "./components/ScreenMenu/ScreenMenu";
-import Game from "./layout/Game/Game";
+import Game from "./layout//Game/Game";
 import Auth from "./layout/Auth/Auth";
 import Login from "./page/Auth/Login/Login";
 import Register from "./page/Auth/Regsiter/Register";
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { baseName } from './data/constants';
+import Constructor from './layout/Constructor/Constructor';
 
 const router = [
   {
     path: "/",
     element: <Game></Game>,
-    children: [
-      {
-        path: "gamebot",
-        element: <Menu></Menu>,
-      },
-      {
-        path: "gameonline",
-        element: <Menu></Menu>,
-      }
-    ],
+  },
+  {
+    path: "/constructor",
+    element: <Constructor />,
   },
   {
     path: "/auth",

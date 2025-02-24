@@ -83,8 +83,6 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
-    color: var(--color-text);
-    text-shadow: 2px 1px 4px var(--color-text-shadow);
 }
 
 .game__types-item {
@@ -93,6 +91,8 @@
     border: 2px solid white;
     border-radius: 10px;
     font-size: 2rem;
+    color: var(--color-text);
+    text-shadow: 2px 1px 4px var(--color-text-shadow);
     box-shadow: 1px 1px 8px var(--color-block-shadow);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
