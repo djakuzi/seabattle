@@ -4,7 +4,7 @@ import cn from "classnames";
 import CoordRect from "../../components/general/CoordRect/CoordRect";
 import Button from "../../components/general/Button/Button";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import MoveShip from "../../scripts/game/setPositionShip";
+import MoveShip, { IntrfStyle } from "../../scripts/game/setPositionShip";
 import IMGbg from '../../assets/image/constructor/ship.jpg';
 import IMGBang from '../../assets/icons/constructor/bang.png';
 import IMGSearchShip from '../../assets/icons/constructor/search-tanker.svg';
@@ -53,7 +53,12 @@ export default function Constructor(): JSX.Element {
     useEffect(()=> {
         getWidth();
         window.addEventListener("resize", getWidth);
-        const classMoveShip = new MoveShip(refBox.current!, styles['--highlight']);
+        const objStyle: IntrfStyle = {
+            highlight: styles['--highlight'],
+            perimeter: styles['--perimeter'],
+            putting: styles['--putting'],
+        };
+        const classMoveShip = new MoveShip(refBox.current!, objStyle);
         classMoveShip.init();
         console.log(classMoveShip.arrCoordPuttingShip);
 

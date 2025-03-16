@@ -56,6 +56,14 @@
     background-color: #51336f73;
 }
 
+.constructor-positon__coord .--perimeter {
+    background-color: #3f6f33;
+}
+
+.constructor-positon__coord .--putting {
+    background-color: #51336f73;
+}
+
 .contsturtor-positon__port {
     width: 35vw;
     aspect-ratio: 1/1;

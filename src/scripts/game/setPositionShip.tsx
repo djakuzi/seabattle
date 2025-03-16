@@ -1,5 +1,12 @@
 import { TypePlaneShip, TypeSizeShip } from "../../types/general/Ship";
 
+
+export interface IntrfStyle {
+    highlight: string,
+    perimeter: string,
+    putting: string,
+}
+
 interface IntrfObjPortShip {
     port: HTMLDivElement;
     parentShip: HTMLDivElement;
@@ -68,7 +75,7 @@ export default class MoveShip {
     };
 
     //params class
-    style: string;
+    style: IntrfStyle;
     field: HTMLDivElement;
     coordFiled: DOMRect;
     arrShip: NodeListOf<HTMLDivElement>;
@@ -88,7 +95,7 @@ export default class MoveShip {
     clickCount: 0 | 1 | 2 = 0;
     lastClickTime:number = 0;
 
-    constructor(field: HTMLDivElement, style:string) {
+    constructor(field: HTMLDivElement, style:IntrfStyle) {
         this.style = style;
         this.field = field;
         this.coordFiled = field.getBoundingClientRect();
@@ -197,9 +204,9 @@ export default class MoveShip {
         this.arrCoordFieldRect.forEach((coordRect, i) => {
 
             if (this.showPlaceShipCoord(coordRect, coordParentShip)) {
-                this.arrFieldRect[i].classList.add(this.style);
+                this.arrFieldRect[i].classList.add(this.style.highlight);
             } else {
-                this.arrFieldRect[i].classList.remove(this.style);
+                this.arrFieldRect[i].classList.remove(this.style.highlight);
             }
         });
     };
@@ -244,9 +251,9 @@ export default class MoveShip {
     */
     private putShip = (): void => {
         try {
-            const plane = this.currentParamsShip.plane;
+            // const plane = this.currentParamsShip.plane;
             const parentShip = this.currentParamsShip.parentShip;
-            const arrBlockHighlight = this.field.querySelectorAll('.' + this.style) as NodeListOf<HTMLDivElement>;
+            const arrBlockHighlight = this.field.querySelectorAll('.' + this.style.highlight) as NodeListOf<HTMLDivElement>;
             const firstBlockHighlight = arrBlockHighlight[0] as HTMLDivElement;
             const lastBlockHighlight = arrBlockHighlight[arrBlockHighlight.length - 1];
             const coordFirstBlockHighlight = firstBlockHighlight?.getBoundingClientRect();
@@ -274,20 +281,21 @@ export default class MoveShip {
                 }
             };
 
-            //устанавливаем корабль визуально на поле по координатам
-            if (plane == "horizontal") {
-                parentShip.style.top = coordFirstBlockHighlight.top + 'px';
-                parentShip.style.left = coordFirstBlockHighlight.left + 'px';
-            } else if (plane == 'vertical') {
-                parentShip.style.top = coordFirstBlockHighlight.top + 'px';
-                parentShip.style.left = coordFirstBlockHighlight.left + 'px';
-            }
-
             //добавляем данные о координатах корабля на поле
             this.changeArrCoordPuttingShip(+parentShip.dataset.id!, 'push', objPuttingShip);
 
+            //добавляем аттрибут putting, который означает, что корабль поставлен
             parentShip.dataset.putting = 'true';
-            
+            //устанавливаем корабль визуально на поле по координатам
+            parentShip.style.top = coordFirstBlockHighlight.top + 'px';
+            parentShip.style.left = coordFirstBlockHighlight.left + 'px';
+
+
+            //показываем периметр корабля на поле, за который нельзя заходить
+            this.setPerimeterPuttingCoord(arrBlockHighlight);
+            //убираем стили подсвечивания координат
+            this.resetHighlightCoord();
+
             document.removeEventListener('mousemove', this.moveCursor);
             parentShip.removeEventListener('mouseup', this.checkPosition);
         } catch (e) {
@@ -307,7 +315,8 @@ export default class MoveShip {
 
             //удлаяем объект данных о координатах корабля на поле, если он там был
             this.changeArrCoordPuttingShip(+id!, 'delete');
-            this.arrFieldRect.forEach( el => el.classList.remove(this.style));
+            //убираем стили подсвечивания координат
+            this.resetHighlightCoord();
             port.appendChild(parentShip);
 
             parentShip.style.zIndex = '2';
@@ -482,6 +491,46 @@ export default class MoveShip {
         }
 
         return isRes;
+    };
+    /**
+     * @method resetHighlightCoord - метод, убирает стиль подсвечивания координат
+    */
+    private resetHighlightCoord = (): void => {
+        this.arrFieldRect.forEach(el => el.classList.remove(this.style.highlight));
+    };
+    /**
+     * @method setPerimeterPuttingCoord - метод устанавливает периметр за который нельзя заходить
+     * при установке другого корабля на поле
+    */
+    private setPerimeterPuttingCoord = (arrRectPutting: NodeListOf<HTMLDivElement>): void => {
+        arrRectPutting.forEach( (rect, i, arr):void => {
+            const rectX = rect.dataset.coordX as string;
+            const rectY = rect.dataset.coordY as string;
+            // let rectTop;
+            // let rectBottom;
+            let sideLeftRightRect;
+
+            // если координата первая или последняя, то найдем координату, которая находится левее или правее
+            if (i == 0) sideLeftRightRect = rect.previousElementSibling;
+            if (i == (arr.length - 1)) sideLeftRightRect = rect.nextElementSibling;
+            
+            if (sideLeftRightRect) sideLeftRightRect.classList.add(this.style.perimeter);
+
+            if (this.currentParamsShip.plane == 'horizontal') {
+                this.arrFieldRect.forEach(rect => {
+                    const x = rectX;
+                    const yTop = +rectY - 1;
+                    const yBottom = +rectY + 1;
+                    const coordX = rect.dataset.coordX;
+                    const coordY = rect.dataset.coordY;
+                    const isTest: boolean = coordX == x && (coordY == (yTop + '') || coordY == (yBottom + ''));
+
+                    if (isTest) rect.classList.add(this.style.perimeter);
+                });
+                // rectTop = this.field.querySelector(`[data-coord-x=${rectX}]` + `[data-coord-y=${+rectY - 1}]`);
+                // rectBottom = this.field.querySelector(`[data-coord-x=${rectX}]` + `[data-coord-y=${+rectY + 1}]`);
+            }
+        });
     };
     // /#Handler methods
 }
