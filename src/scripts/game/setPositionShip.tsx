@@ -506,30 +506,33 @@ export default class MoveShip {
         arrRectPutting.forEach( (rect, i, arr):void => {
             const rectX = rect.dataset.coordX as string;
             const rectY = rect.dataset.coordY as string;
-            // let rectTop;
-            // let rectBottom;
+            let rectTop;
+            let rectBottom;
             let sideLeftRightRect;
+
+            if (this.currentParamsShip.plane == 'horizontal') {
+                // this.arrFieldRect.forEach( rect => {
+                //     const x = rectX;
+                //     const yTop = +rectY - 1;
+                //     const yBottom = +rectY + 1;
+                //     const coordX = rect.dataset.coordX;
+                //     const coordY = rect.dataset.coordY;
+                //     const isTest: boolean = coordX == x && (coordY == (yTop + '') || coordY == (yBottom + '')) ;
+                    
+                //     if (isTest) rect.classList.add(this.style.perimeter);
+                // });
+                rectTop = this.field.querySelector(`[data-coord-x='${rectX}']` + `[data-coord-y='${+rectY - 1}']`);
+                rectBottom = this.field.querySelector(`[data-coord-x='${rectX}']` + `[data-coord-y='${+rectY + 1}']`);
+            }
 
             // если координата первая или последняя, то найдем координату, которая находится левее или правее
             if (i == 0) sideLeftRightRect = rect.previousElementSibling;
             if (i == (arr.length - 1)) sideLeftRightRect = rect.nextElementSibling;
-            
+
+            // если координаты найдена, то установим периметр
+            if (rectTop) rectTop.classList.add(this.style.perimeter);
+            if (rectBottom) rectBottom.classList.add(this.style.perimeter);
             if (sideLeftRightRect) sideLeftRightRect.classList.add(this.style.perimeter);
-
-            if (this.currentParamsShip.plane == 'horizontal') {
-                this.arrFieldRect.forEach(rect => {
-                    const x = rectX;
-                    const yTop = +rectY - 1;
-                    const yBottom = +rectY + 1;
-                    const coordX = rect.dataset.coordX;
-                    const coordY = rect.dataset.coordY;
-                    const isTest: boolean = coordX == x && (coordY == (yTop + '') || coordY == (yBottom + ''));
-
-                    if (isTest) rect.classList.add(this.style.perimeter);
-                });
-                // rectTop = this.field.querySelector(`[data-coord-x=${rectX}]` + `[data-coord-y=${+rectY - 1}]`);
-                // rectBottom = this.field.querySelector(`[data-coord-x=${rectX}]` + `[data-coord-y=${+rectY + 1}]`);
-            }
         });
     };
     // /#Handler methods
