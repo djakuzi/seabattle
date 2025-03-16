@@ -1,9 +1,9 @@
 import { JSX, useEffect, useRef } from "react";
 import styles from './Game.module.css';
 import changeTheme from "../../scripts/visual/changeTheme";
-import ChangeTheme from "../../components/ChangeTheme/ChangeTheme";
-import Logo from "../../components/Logo/Logo";
-import MainScreenSlider from "../../components/MainScreenSlider/MainScreenSlider";
+import ChangeTheme from "../../components/general/ChangeTheme/ChangeTheme";
+import Logo from "../../components/general/Logo/Logo";
+import MainScreenSlider from "../../components/mainMenu/MainScreenSlider/MainScreenSlider";
 import audioOnOff from "../../scripts/visual/audioMainMenu";
 import AUDIOmain from "../../assets/audio/mainMenu.mp3";
 // import parallax from "../../scripts/visual/parallax";

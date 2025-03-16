@@ -1,7 +1,7 @@
 import { JSX } from "react";
 import styles from './ChangeTheme.module.css';
 import { PropsChangeTheme } from "./ChangeTheme.props";
-import changeTheme from "../../scripts/visual/changeTheme";
+import changeTheme from "../../../scripts/visual/changeTheme";
 
 export default function ChangeTheme({className}: PropsChangeTheme):JSX.Element {
 

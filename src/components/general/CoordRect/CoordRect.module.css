@@ -1,0 +1,23 @@
+html .box {
+    --cs-color-coord-border: #ffffff;
+}
+
+html[data-theme="dark"] .box {
+    --cs-color-coord-border: #000000;
+}
+
+.box {
+    border: 1px solid var(--cs-color-coord-border);
+    overflow: hidden;
+}
+
+.box__row {
+    display: flex;
+    width: 100%;
+}
+
+.box-row__rect {
+    width: 10%;
+    aspect-ratio: 1/1;
+    border: 1px solid var(--cs-color-coord-border);
+}

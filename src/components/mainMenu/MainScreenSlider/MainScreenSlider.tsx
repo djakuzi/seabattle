@@ -1,14 +1,14 @@
-import { JSX, useEffect, useRef, useState} from "react";
+import { JSX, useEffect, useRef } from "react";
 import styles from './MainScreenSlider.module.css';
 import cn from "classnames";
 import { PropsMainScreenSlider } from "./MainScreenSlider.props";
 import ScreenMenu from "../ScreenMenu/ScreenMenu";
 import Profile from "../ScreenProfile/ScreenProfile";
 import Settings from "../ScreenSettings/ScreenSettings";
-import { toggleScreen } from "../../data/dataComponents";
-import { RootState } from "../../redux/store";
+import { toggleScreen } from "../../../data/dataComponents";
+import { RootState } from "../../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { actionsMainSliderScreen } from "../../redux/slice/mainSliderScreen";
+import { actionsMainSliderScreen } from "../../../redux/slice/mainSliderScreen";
 
 
 export default function MainScreenSlider({ className = '' }: PropsMainScreenSlider): JSX.Element {
@@ -19,10 +19,10 @@ export default function MainScreenSlider({ className = '' }: PropsMainScreenSlid
 
     const refSlider = useRef<HTMLDivElement>(null);
 
-    function setScreen(name: string):void {
+    function setScreen(name: string): void {
         if (!refSlider.current) return;
 
-        const index = toggleScreen.findIndex( el => el.name == name) ;
+        const index = toggleScreen.findIndex(el => el.name == name);
         const width = index * refSlider.current.offsetWidth * -1;
 
         refSlider.current.style.transform = 'translateX(' + width + 'px)';
@@ -30,21 +30,25 @@ export default function MainScreenSlider({ className = '' }: PropsMainScreenSlid
         if (name !== activeScreen) dispatch(actionsMainSliderScreen.changeScreen(name));
     }
 
-    useEffect(() => {
-        if (refSlider.current) {
-            refSlider.current.style.transform = 'translateX(-1650px)';
-        }
-
+    function handlerResize():void {
         setScreen(activeScreen);
-        window.addEventListener('resize', () => setScreen(activeScreen));
+    }
+
+    useEffect(() => {
+        setScreen(activeScreen);
+        window.addEventListener('resize', handlerResize);
+
+        return ():void => {
+            window.removeEventListener('resize', handlerResize);
+        };
     }, []);
 
     return (
         <div className={cls}>
-            <div ref={refSlider}className={styles["screen__slider"]}>
-                <Profile/>
-                <ScreenMenu/>
-                <Settings/>
+            <div ref={refSlider} className={styles["screen__slider"]}>
+                <Profile />
+                <ScreenMenu />
+                <Settings />
             </div>
             <div className={styles['screen__panel']}>
                 {...toggleScreen.map((el, i) => {

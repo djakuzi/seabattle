@@ -40,3 +40,22 @@ export const profileMenu = [
     name: 'exit',
   },
 ];
+
+export const variantPlay = [
+  {
+    type: 'bot',
+    title: 'С БОТОМ',
+  },
+  {
+    type: 'online',
+    title: 'ОНЛАЙН',
+  },
+  {
+    type: 'tournament',
+    title: 'ТУРНИР',
+  },
+  {
+    type: 'invite',
+    title: 'ПО ПРИГЛАШЕНИЮ',
+  },
+];

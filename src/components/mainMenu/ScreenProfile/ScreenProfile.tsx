@@ -2,8 +2,8 @@ import styles from './ScreenProfile.module.css';
 import cn from "classnames";
 import { JSX } from "react";
 import { PropsScreenProfile } from "./ScreenProfile.props";
-import TitlePage from '../TitlePage/TitlePage';
-import { profileMenu } from '../../data/dataComponents';
+import TitlePage from '../../general/TitlePage/TitlePage';
+import { profileMenu } from '../../../data/dataComponents';
 
 export default function ScreenProfile({ className = '', inputRef}:PropsScreenProfile): JSX.Element {
     // const cls = styles["profile"] + ` ${className}`;
