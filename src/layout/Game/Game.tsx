@@ -28,6 +28,7 @@ export default function Game(): JSX.Element {
         <div className={styles["game"]} data-aspect-ratio={aspectRatio}>
             <div className={styles["game-window"]}>
                 <div className={styles['game-interaction']}>
+                    <div>{aspectRatio}</div>
                     <ChangeTheme className={styles['game-theme']} />
                     <Logo cls={styles['game-logo']} size="big"></Logo>
                 </div>
