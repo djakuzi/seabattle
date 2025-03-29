@@ -15,8 +15,7 @@ html[data-theme="dark"] .switch__toggle {
 }
 
 /* 16/9 */
-[data-aspect-ratio="16:9"] {
-    & .switch {
+.switch {
         max-width: 10%;
         width: 10%;
         aspect-ratio: 1 / 0.5;
@@ -27,13 +26,12 @@ html[data-theme="dark"] .switch__toggle {
         -webkit-backdrop-filter: blur(5px);
     }
 
-    & .switch__toggle {
+.switch__toggle {
         max-width: 50%;
         min-width: 50%;
         aspect-ratio: 1 / 0.96;
         border-radius: 50%;
     }
-}
 /* /16/9 */
 
 

@@ -119,23 +119,23 @@
 }
 
 /* 16/9 */
-[data-aspect-ratio="16:9"] {
+ 
 
-    & .title-page {
+     .title-page {
         padding-top: 5vw;
         padding-bottom: 3vw;
     }
 
-    & .menu__wrapper {
+     .menu__wrapper {
         max-width: 30vw;
         width: 100%;
     }
 
-    & .menu__box {
+     .menu__box {
         width: 100%;
     }
 
-    & .game {
+     .game {
         padding: 10% 3%;
         margin-bottom: calc(10%);
         backdrop-filter: blur(.3vw);
@@ -145,17 +145,17 @@
         border-radius: 10vw;
     }
 
-    & .game__title {
+     .game__title {
         margin-bottom: 3%;
         font-size: 2.5vw;
         text-shadow: .1vw .1vw .2vw var(--color-text-shadow);
     }
 
-    & .game__types {
+     .game__types {
         gap: .5vw;
     }
 
-    & .game__types-item {
+     .game__types-item {
         padding: 1%;
         border: .1vw solid white;
         border-radius: .4vw;
@@ -167,8 +167,7 @@
         -webkit-backdrop-filter: blur(.3vw);
     }
 
-    & .game__leaders {
+     .game__leaders {
         font-size: 1vw;
     }
-}
 /* /16/9 */

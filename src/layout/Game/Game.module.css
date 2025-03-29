@@ -43,27 +43,25 @@
 }
 
 /* 16/9 */
-[data-aspect-ratio="16:9"] {
-    &.game::after {
+.game::after {
         backdrop-filter: blur(0.1vw);
         -webkit-backdrop-filter: blur(0.1vw);
     }
 
-    &.game:hover::after {
+.game:hover::after {
         backdrop-filter: blur(0.1vw) brightness(80%);
         -webkit-backdrop-filter: blur(0.1vw) brightness(80%);
     }
 
-    & .game-interaction {
+.game-interaction {
         padding: 1.5vw 1vw 0 1vw;
     }
 
-    & .game-theme {
+ .game-theme {
         margin-right: auto;
     }
 
-    & .game-logo {
+.game-logo {
         margin: 0 auto;
     }
-}
 /* /16/9 */

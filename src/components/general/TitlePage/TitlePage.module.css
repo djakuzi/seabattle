@@ -36,9 +36,9 @@ html[data-theme="dark"] .title {
 }
 
 /* 16/9 */
-[data-aspect-ratio="16:9"] {
-    & .title-txt {
+
+.title-txt {
         text-shadow: .1vw .1vw .2vw var(--cs-color-logo-shadow);
     }
-}
+
 /* /16/9 */

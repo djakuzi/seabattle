@@ -59,15 +59,14 @@ html[data-theme="dark"] .screen__panel {}
 }
 
 /* 16/9 */
-[data-aspect-ratio="16:9"] {
-    & .screen__slider {
+.screen__slider {
         display: flex;
         min-width: 100%;
         height: 100%;
         transition: all .3s linear;
     }
 
-    & .screen__panel {
+     .screen__panel {
         max-width: 7.5vw;
         width: 100%;
         margin: auto auto 1vw auto;
@@ -78,20 +77,19 @@ html[data-theme="dark"] .screen__panel {}
         -webkit-backdrop-filter: blur(.2vw);
     }
 
-    & .panel__item {
+     .panel__item {
         max-width: 33%;
         width: 100%;
         aspect-ratio: 1/1;
     }
 
-    & .panel__item::after {
+     .panel__item::after {
         bottom: -8%;
         width: 13%;
         aspect-ratio: 1 / 1;
     }
 
-    & .panel__item img {
+     .panel__item img {
         max-width: 70%;
     }
-}
 /* /16/9 */

@@ -48,22 +48,22 @@ html[data-theme="dark"] .logo {
 }
 
 /* 16/9 */
-[data-aspect-ratio="16:9"] {
-    & .logo__title {
+
+ .logo__title {
         font-size: 2vw;
         white-space: nowrap;
     }
 
-    & .logo__title-txt {
+ .logo__title-txt {
         text-shadow: .1vw .1vw .3vw var(--cs-color-logo-shadow);
     }
 
-    & .logo__author {
+ .logo__author {
         font-size: 0.4vw;
     }
 
-    & .logo__author-txt {
+ .logo__author-txt {
         text-shadow: .1vw .1vw .2vw var(--cs-color-logo-shadow);
     }
-}
+
 /* /16/9 */
