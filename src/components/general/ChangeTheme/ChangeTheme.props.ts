@@ -1,4 +1,4 @@
-import { SizeChoise } from "../../types/props/sizeChoise";
+import { SizeChoise } from "../../../types/props/sizeChoise";
 
 export interface PropsChangeTheme {
     className?: string;
