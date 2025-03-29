@@ -1,4 +1,4 @@
 export interface PropsShip {
-    widthImg: number;
+    widthRect: number;
     cls: string;
 }

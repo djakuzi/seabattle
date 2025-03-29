@@ -1,5 +1,18 @@
 .ship img {
     display: block;
     width: 100%;
-    height: auto;
+}
+
+.ship img.--vertical {
+    display: none;
+}
+
+.ship[data-plane="vertical"] img.--horizontal {
+    display: none;
+}
+
+.ship[data-plane="vertical"] img.--vertical {
+    display: block;
+    height: 100%;
+    background-color: antiquewhite;
 }

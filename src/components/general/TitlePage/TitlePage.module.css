@@ -10,7 +10,7 @@ html[data-theme="dark"] .title {
 
 .title {
     width: fit-content;
-    font-size: 22px;
+    font-size: 1.3vw;
     color: var(--cs-color-title-page);
 }
 
@@ -34,3 +34,11 @@ html[data-theme="dark"] .title {
     font-size: .5em;
     letter-spacing: 0.1em;
 }
+
+/* 16/9 */
+[data-aspect-ratio="16:9"] {
+    & .title-txt {
+        text-shadow: .1vw .1vw .2vw var(--cs-color-logo-shadow);
+    }
+}
+/* /16/9 */

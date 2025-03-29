@@ -4,12 +4,13 @@ import cn from "classnames";
 import CoordRect from "../../components/general/CoordRect/CoordRect";
 import Button from "../../components/general/Button/Button";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import MoveShip, { IntrfStyle } from "../../scripts/game/setPositionShip";
+import MoveShip, { IntrfStyle } from "../../scripts/constructor/setPositionShip";
 import IMGbg from '../../assets/image/constructor/ship.jpg';
 import IMGBang from '../../assets/icons/constructor/bang.png';
 import IMGSearchShip from '../../assets/icons/constructor/search-tanker.svg';
 import PortShip from "../../components/constructor/PortShip/PortShip";
-import getWidthRect from "../../scripts/general/getWidthRect";
+import { useAspectRatio } from "../../hooks/general/getAspectRatioScreen";
+import { useGetWidthRect } from "../../hooks/general/getWidthRect";
 
 const paramsBtnPlay = {
     type: 'btn',
@@ -27,19 +28,19 @@ const textbtn = {
 };
 
 export default function Constructor(): JSX.Element {
-    const refBox = useRef<HTMLDivElement>(null);
-    const [widthImg, setWidthImg] = useState<number>(30);
+    //ref
+    const refCoordRect = useRef<HTMLDivElement>(null);
+    const refConstructor = useRef<HTMLDivElement>(null);
+    //another
+    // const [widthImg, setWidthImg] = useState<number>(30);
     const [searchParams, setSearchParams] = useSearchParams();
     const navigate = useNavigate();
+    //custom hook
+    const aspectRatio = useAspectRatio();
+    const widthRect = useGetWidthRect(refCoordRect);
 
     const typeGame = searchParams.get('typegame');
     const testGame = typeGame == "invite" || typeGame == "bot";
-
-    const getWidth = ():void => {
-        if (refBox.current) {
-            setWidthImg(getWidthRect(refBox.current));
-        }
-    };
 
     const exit = ():void => {
         navigate(-1);
@@ -51,47 +52,45 @@ export default function Constructor(): JSX.Element {
     };
     
     useEffect(()=> {
-        getWidth();
-        window.addEventListener("resize", getWidth);
+        if (!refCoordRect.current) return;
+        
         const objStyle: IntrfStyle = {
             highlight: styles['--highlight'],
             perimeter: styles['--perimeter'],
             putting: styles['--putting'],
         };
-        const classMoveShip = new MoveShip(refBox.current!, objStyle);
+        const classMoveShip = new MoveShip(refCoordRect.current!, objStyle);
         classMoveShip.init();
-        console.log(classMoveShip.arrCoordPuttingShip);
 
         return ():void => {
             classMoveShip.unInit();
-            window.removeEventListener("resize", getWidth);
         };
-    }, []);
+    }, [aspectRatio]);
 
-    if (refBox.current && !typeGame) {
-        return  (
-            <div className={cn(styles['constructor'], styles['--error'])}>Произошла ошибка</div>
-        );
-    }
+    // if (refCoordRect.current || !typeGame || widthRect === 0) {
+    //     return  (
+    //         <div className={cn(styles['constructor'], styles['--error'])}>Произошла ошибка</div>
+    //     );
+    // }
     
     return (
-        <div className={cn(styles['constructor'])} style={{backgroundImage: `url(${IMGbg})`}}>
+        <div ref={refConstructor} className={cn(styles['constructor'])} style={{ backgroundImage: `url(${IMGbg})` }} data-aspect-ratio={aspectRatio}>
             <div className={styles['constructor__box']}>
                 <div className={styles['constructor__action']}>
                     <Button cls={styles['constructor-action__exit']} paramsBtn={paramsBtnExit} onClick={exit}>Назад</Button>
                 </div>
                 <div className={styles['constructor__positon']}>
-                    <CoordRect inputRef={refBox} cls={styles['constructor-positon__coord']} />
-                    <PortShip widthImg={widthImg} cls={styles["contsturtor-positon__port"]}/>
+                    <CoordRect inputRef={refCoordRect} cls={styles['constructor-positon__coord']} />
+                    <PortShip widthRect={widthRect} cls={styles["contsturtor-positon__port"]}/>
                 </div>
                 <div className={styles['constructor__action']}>
                     <div className={styles['constructor-action__rules']}>
-
+    
                     </div>
                     <Button cls={ cn(styles['constructor-action__play'], {
                         [styles['red']]: testGame
                     })} paramsBtn={paramsBtnPlay} onClick={play}>
-                        {textbtn[typeGame + '']}
+                        <div className={styles['constructor-action-play__text']}>{textbtn[typeGame + '']}</div>
                         <div className={styles['constructor-action-play__bang']}>
                             <img src={testGame ? IMGBang : IMGSearchShip} alt="" />
                         </div>

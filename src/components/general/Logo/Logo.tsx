@@ -1,13 +1,12 @@
 import { JSX } from "react";
 import styles from './Logo.module.css';
 import { PropsLogo } from "./Logo.props";
+import cn from "classnames";
 
-export default function Logo({className = '', size = 'big'}:PropsLogo):JSX.Element {
-
-    const classNameLogo = styles['logo'] + ' ' + className;
+export default function Logo({cls = '', size = 'big'}:PropsLogo):JSX.Element {
 
     return (
-        <div className={classNameLogo}>
+        <div className={cn(styles['logo'], cls)}>
             <div className={styles['logo__title']}>
                 <div className={styles['logo__title-txt'] + ' ' + styles['--' + size]}>
                     МОРСКОЙ БОЙ

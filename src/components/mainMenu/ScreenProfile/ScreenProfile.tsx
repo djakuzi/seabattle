@@ -11,23 +11,18 @@ export default function ScreenProfile({ className = '', inputRef}:PropsScreenPro
     return (
         <div ref={inputRef} className={cn(styles["profile"], className)}>
             <div className={styles["profile__wrapper"]}>
-                <div className={styles["profile__menu"]}>
-                    <TitlePage className={styles['title-page']}>Профиль</TitlePage>
+                <TitlePage className={styles['title-page']}>Профиль</TitlePage>
 
-                    <div className={styles['profile-menu']}>
-                        {...profileMenu.map((el, i) => {
-                            return (
-                                <div key={i} data-profile-name={el.name} className={cn(styles['profile-menu__item'], {
-                                    [styles['--exit']]: 'exit' === el.name,
-                                })}>
-                                    {el.title}
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-                <div className={styles['profile__window']}>
-
+                <div className={styles['profile-menu']}>
+                    {...profileMenu.map((el, i) => {
+                        return (
+                            <div key={i} data-profile-name={el.name} className={cn(styles['profile-menu__item'], {
+                                [styles['--exit']]: 'exit' === el.name,
+                            })}>
+                                {el.title}
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </div>

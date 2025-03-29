@@ -1,4 +1,4 @@
-import { JSX, useEffect, useRef } from "react";
+import { JSX, useRef } from "react";
 import styles from './MainScreenSlider.module.css';
 import cn from "classnames";
 import { PropsMainScreenSlider } from "./MainScreenSlider.props";
@@ -11,41 +11,33 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionsMainSliderScreen } from "../../../redux/slice/mainSliderScreen";
 
 
-export default function MainScreenSlider({ className = '' }: PropsMainScreenSlider): JSX.Element {
-
-    const cls = styles['screen'] + ' ' + className;
+export default function MainScreenSlider({ cls = '' }: PropsMainScreenSlider): JSX.Element {
+    //redux screen
     const dispatch = useDispatch();
     const activeScreen = useSelector((state: RootState) => state.sliderScreen.screen);
 
     const refSlider = useRef<HTMLDivElement>(null);
+    //style
+    const inlineStyle = {
+        screen: {
+            transform: 'translate(-100%)',
+        }
+    };
 
     function setScreen(name: string): void {
         if (!refSlider.current) return;
 
         const index = toggleScreen.findIndex(el => el.name == name);
-        const width = index * refSlider.current.offsetWidth * -1;
+        const width = (index * 100) * -1;
 
-        refSlider.current.style.transform = 'translateX(' + width + 'px)';
+        refSlider.current.style.transform = 'translateX(' + width + '%)';
 
         if (name !== activeScreen) dispatch(actionsMainSliderScreen.changeScreen(name));
     }
 
-    function handlerResize():void {
-        setScreen(activeScreen);
-    }
-
-    useEffect(() => {
-        setScreen(activeScreen);
-        window.addEventListener('resize', handlerResize);
-
-        return ():void => {
-            window.removeEventListener('resize', handlerResize);
-        };
-    }, []);
-
     return (
-        <div className={cls}>
-            <div ref={refSlider} className={styles["screen__slider"]}>
+        <div className={cn(styles['screen'], cls)}>
+            <div ref={refSlider} style={inlineStyle.screen} className={styles["screen__slider"]}>
                 <Profile />
                 <ScreenMenu />
                 <Settings />

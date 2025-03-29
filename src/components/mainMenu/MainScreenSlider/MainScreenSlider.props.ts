@@ -1,3 +1,3 @@
 export interface PropsMainScreenSlider {
-  className?: string;
+  cls?: string;
 };

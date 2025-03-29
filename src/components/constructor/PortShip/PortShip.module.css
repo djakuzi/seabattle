@@ -16,13 +16,9 @@ html[data-theme="dark"] .contsturtor-wrapper {
 
 .contsturtor-title {
     position: absolute;
-    top: -1.9vw;
     left: 50%;
     transform: translateX(-50%);
     background-color: #ffffff;
-    padding: 1vw;
-    border-radius: 1vw;
-    font-size: 1.4vw;
     z-index: 10;
 }
 
@@ -76,4 +72,13 @@ html[data-theme="dark"] .contsturtor-wrapper {
     width: 50%;
     aspect-ratio: 1/1;
     border: 1px solid var(--cs-color-coord-border);
+}
+
+[data-aspect-ratio="16:9"] {
+    & .contsturtor-title {
+        top: -1.9vw;
+        padding: 1vw;
+        border-radius: 1vw;
+        font-size: min(1.4vw, 35px);
+    }
 }

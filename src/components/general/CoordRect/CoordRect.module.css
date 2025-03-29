@@ -19,5 +19,17 @@ html[data-theme="dark"] .box {
 .box-row__rect {
     width: 10%;
     aspect-ratio: 1/1;
-    border: 1px solid var(--cs-color-coord-border);
 }
+
+/* 16/9 */
+[data-aspect-ratio="16:9"] {
+    & .box {
+        border: .08vw solid var(--cs-color-coord-border);
+    }
+
+    & .box-row__rect {
+        flex: 1;
+        border: .08vw solid var(--cs-color-coord-border);
+    }
+}
+/* 16/9 */
